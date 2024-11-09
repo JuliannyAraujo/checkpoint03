@@ -1,14 +1,13 @@
 ﻿using CP3.Domain.Entities;
 
-namespace CP3.Domain.Interfaces
+namespace CP3.Infrastructure.Repositories
 {
     public interface IBarcoRepository
     {
-        BarcoEntity? ObterPorId(int id);
-        IEnumerable<BarcoEntity>? ObterTodos();
-        BarcoEntity? Adicionar(BarcoEntity cliente);
-        BarcoEntity? Editar(BarcoEntity cliente);
-        BarcoEntity? Remover(int id);
-
+        BarcoEntity Adicionar(BarcoEntity barcoEntity);  
+        BarcoEntity Editar(BarcoEntity barcoExistente);  
+        BarcoEntity ObterPorId(int id);  
+        List<BarcoEntity>? ObterTodos();  
+        BarcoEntity Remover(int id);  
     }
 }

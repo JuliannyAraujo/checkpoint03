@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP3.API", "CP3.API\CP3.API.csproj", "{F1D0A134-0815-463C-8A01-3FA97D5ACC17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP3.API", "CP3.API\CP3.API.csproj", "{F1D0A134-0815-463C-8A01-3FA97D5ACC17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{CFB93657-20CD-4FE8-A9CF-9E379FCCBF60}"
 EndProject
@@ -15,15 +15,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Tests", "4 - Tests", "{BADE22D8-B0B7-4B0C-B335-8FD9C9267820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP3.Application", "CP3.Application\CP3.Application.csproj", "{8D785F16-03FC-4B3D-8614-39A964B280F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP3.Application", "CP3.Application\CP3.Application.csproj", "{8D785F16-03FC-4B3D-8614-39A964B280F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP3.Domain", "CP3.Domain\CP3.Domain.csproj", "{9BFA40FC-22E9-44D9-893F-C16B3F30090B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP3.Domain", "CP3.Domain\CP3.Domain.csproj", "{9BFA40FC-22E9-44D9-893F-C16B3F30090B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP3.Data", "CP3.Data\CP3.Data.csproj", "{2E70E2A7-ED73-4EE8-8879-96A2A380ED92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP3.Data", "CP3.Data\CP3.Data.csproj", "{2E70E2A7-ED73-4EE8-8879-96A2A380ED92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP3.IoC", "CP3.IoC\CP3.IoC.csproj", "{A9277724-EA5B-4153-9600-27AB75A3AAF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP3.IoC", "CP3.IoC\CP3.IoC.csproj", "{A9277724-EA5B-4153-9600-27AB75A3AAF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP3.Tests", "CP3.Tests\CP3.Tests.csproj", "{646C2A0E-0CF9-433A-8BCB-37A6380FAE41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CP3.Tests", "CP3.Tests\CP3.Tests.csproj", "{646C2A0E-0CF9-433A-8BCB-37A6380FAE41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95E91837-B870-468A-AB08-E1ABB3D6AFF2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

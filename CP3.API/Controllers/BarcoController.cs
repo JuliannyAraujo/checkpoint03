@@ -1,4 +1,5 @@
 ﻿using CP3.Application.Dtos;
+using CP3.Application.Services;
 using CP3.Domain.Entities;
 using CP3.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,88 +18,115 @@ namespace CP3.API.Controllers
             _applicationService = applicationService;
         }
 
+
         [HttpGet]
-        [Produces<IEnumerable<BarcoEntity>>]
+        [ProducesResponseType(typeof(IEnumerable<BarcoEntity>), 200)]  
+        [ProducesResponseType(204)] 
         public IActionResult Get()
         {
-            var categorias = _applicationService.ObterTodosBarcos();
+            var barcos = _applicationService.ObterTodosBarcos();
 
-            if (categorias is not null)
-                return Ok(categorias);
+            if (barcos != null && barcos.Any())
+                return Ok(barcos);  
 
-            return BadRequest("Não foi possivel obter os dados");
+            return NoContent();  
         }
 
 
         [HttpGet("{id}")]
-        [Produces<BarcoEntity>]
+        [ProducesResponseType(typeof(BarcoEntity), 200)]  
+        [ProducesResponseType(404)]  
         public IActionResult GetPorId(int id)
         {
-            var categorias = _applicationService.ObterBarcoPorId(id);
+            var barco = _applicationService.ObterBarcoPorId(id);
 
-            if (categorias is not null)
-                return Ok(categorias);
+            if (barco != null)
+                return Ok(barco);  
 
-            return BadRequest("Não foi possivel obter os dados");
+            return NotFound(new { Message = "Barco não encontrado." });  
         }
 
+
         [HttpPost]
-        [Produces<BarcoEntity>]
-        public IActionResult Post(BarcoDto entity)
+        [ProducesResponseType(typeof(BarcoEntity), 201)]  
+        [ProducesResponseType(400)]  
+        public IActionResult Post([FromBody] BarcoDto entity)
         {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);  
+
             try
             {
-                var categorias = _applicationService.AdicionarBarco(entity);
+ 
+                var barco = _applicationService.AdicionarBarco(entity);
 
-                if (categorias is not null)
-                    return Ok(categorias);
 
-                return BadRequest("Não foi possivel salvar os dados");
+                return CreatedAtAction(nameof(GetPorId), new { id = barco.Id }, barco);
             }
             catch (Exception ex)
             {
                 return BadRequest(new
                 {
                     Error = ex.Message,
-                    Status = HttpStatusCode.BadRequest,
-                });
+                    Status = HttpStatusCode.BadRequest
+                });  
             }
         }
 
         [HttpPut("{id}")]
-        [Produces<BarcoEntity>]
-        public IActionResult Put(int id, BarcoDto entity)
+        [ProducesResponseType(typeof(BarcoEntity), 200)]  
+        [ProducesResponseType(400)]  
+        [ProducesResponseType(404)]  
+        public IActionResult Put(int id, [FromBody] BarcoDto entity)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);  
+
             try
             {
-                var categorias = _applicationService.EditarBarco(id, entity);
 
-                if (categorias is not null)
-                    return Ok(categorias);
+                var barco = _applicationService.EditarBarco(id, entity);
 
-                return BadRequest("Não foi possivel editar os dados");
+                return Ok(barco);  
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { Message = "Barco não encontrado." });  
             }
             catch (Exception ex)
             {
                 return BadRequest(new
                 {
                     Error = ex.Message,
-                    Status = HttpStatusCode.BadRequest,
-                });
+                    Status = HttpStatusCode.BadRequest
+                });  
             }
         }
 
+
         [HttpDelete("{id}")]
-        [Produces<BarcoEntity>]
+        [ProducesResponseType(200)]  
+        [ProducesResponseType(404)]  
         public IActionResult Delete(int id)
         {
-            var categorias = _applicationService.RemoverBarco(id);
-
-            if (categorias is not null)
-                return Ok(categorias);
-
-            return BadRequest("Não foi possivel deletar os dados");
+            try
+            {
+                var barco = _applicationService.RemoverBarco(id);
+                return Ok(barco);  
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { Message = "Barco não encontrado." });  
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    Error = ex.Message,
+                    Status = HttpStatusCode.BadRequest
+                });  
+            }
         }
-
     }
 }
